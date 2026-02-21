@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Categories Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-900">
+
+  <div class="max-w-6xl mx-auto py-12 px-6">
+
+    <div class="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-4">
+      <div>
+        <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">Categories Dashboard</h1>
+        <p class="text-slate-500 mt-1">Manage your product hierarchy and descriptions.</p>
+      </div>
+      <button class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-xl transition-all shadow-lg shadow-indigo-200 font-medium">
+        <i data-lucide="plus" class="w-5 h-5"></i>
+        Add Category
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+      <div class="lg:col-span-5 flex flex-col gap-4">
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="p-5 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+            <h2 class="font-bold text-slate-700">All Categories</h2>
+            <span class="text-xs font-bold bg-slate-200 text-slate-600 px-2.5 py-1 rounded-full">4 Total</span>
+          </div>
+          
+          <ul class="divide-y divide-slate-100 max-h-[550px] overflow-y-auto custom-scrollbar">
+            
+            <li class="group p-4 hover:bg-indigo-50/50 transition-colors cursor-pointer bg-indigo-50/30">
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg group-hover:scale-110 transition-transform">
+                  <i data-lucide="cpu" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">ID: 001</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300"></i>
+                  </div>
+                  <p class="font-bold text-slate-800">Electronics</p>
+                  <p class="text-sm text-slate-500 line-clamp-1">High-end devices and smart gadgets</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="group p-4 hover:bg-indigo-50/50 transition-colors cursor-pointer">
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-slate-100 text-slate-500 rounded-lg group-hover:scale-110 transition-transform">
+                  <i data-lucide="shirt" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">ID: 002</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  </div>
+                  <p class="font-bold text-slate-800">Clothing</p>
+                  <p class="text-sm text-slate-500 line-clamp-1">Summer collection and formal wear</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="group p-4 hover:bg-indigo-50/50 transition-colors cursor-pointer">
+              <div class="flex items-start gap-4">
+                <div class="p-2 bg-slate-100 text-slate-500 rounded-lg group-hover:scale-110 transition-transform">
+                  <i data-lucide="book-open" class="w-5 h-5"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">ID: 003</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                  </div>
+                  <p class="font-bold text-slate-800">Books</p>
+                  <p class="text-sm text-slate-500 line-clamp-1">Educational and fiction novels</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 p-8 sticky top-10">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white">
+              <i data-lucide="pencil-line" class="w-5 h-5"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-slate-800">Edit Category</h2>
+          </div>
+
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-slate-600 ml-1">Category ID</label>
+                <input type="text" value="001" disabled class="w-full bg-slate-50 border border-slate-200 p-3 rounded-xl text-slate-400 cursor-not-allowed">
+              </div>
+              <div class="space-y-2">
+                <label class="text-sm font-semibold text-slate-600 ml-1">Category Name</label>
+                <input type="text" placeholder="e.g. Electronics" class="w-full border border-slate-200 p-3 rounded-xl focus:ring-4 focus:ring-indigo-50 focus:border-indigo-500 outline-none transition-all">
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label class="text-sm font-semibold text-slate-600 ml-1">Full Description</label>
+              <textarea placeholder="Describe this category..." class="w-full border border-slate-200 p-3 rounded-xl focus:ring-4 focus:ring-indigo-50 focus:border-indigo-500 outline-none transition-all h-32 resize-none"></textarea>
+            </div>
+
+            <div class="flex items-center gap-4 pt-4">
+              <button type="submit" class="flex-1 bg-indigo-600 text-white py-3.5 rounded-xl hover:bg-indigo-700 transition-all font-bold shadow-lg shadow-indigo-100 active:scale-[0.98]">
+                Save Changes
+              </button>
+              <button type="button" class="px-6 py-3.5 rounded-xl border border-slate-200 text-slate-600 font-semibold hover:bg-slate-50 transition-all">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Initialize icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
