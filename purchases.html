@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexStore | Purchase Ledger</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .drawer-shadow { shadow-left: -10px 0 15px -3px rgba(0, 0, 0, 0.1); }
+        /* Smooth Drawer Transition */
+        #purchaseDrawer { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .drawer-hidden { transform: translateX(100%); }
+    </style>
+</head>
+<body class="bg-[#F1F5F9] text-slate-900 overflow-hidden">
+
+<div class="flex h-screen relative">
+    
+    <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-[#0F172A] text-slate-400 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 border-r border-slate-800 flex flex-col">
+    
+        <div class="h-20 px-6 flex items-center justify-between border-b border-slate-800/50">
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-indigo-500 rounded-lg blur opacity-25"></div>
+                    <div class="relative bg-indigo-600 p-2 rounded-xl shadow-lg">
+                        <i data-lucide="zap" class="text-white w-6 h-6 fill-current"></i>
+                    </div>
+                </div>
+                <div class="leading-tight">
+                    <span class="text-base font-bold text-white block tracking-tight">WaqasBilalEnterprise</span>
+                    <span class="text-[10px] text-indigo-400 font-black uppercase tracking-[0.1em]">Admin Terminal</span>
+                </div>
+            </div>
+            <button onclick="toggleSidebar()" class="md:hidden text-slate-500 hover:text-white transition-colors">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto custom-scrollbar">
+            
+            <p class="text-[11px] font-bold text-slate-600 uppercase px-3 pb-2 tracking-[0.15em]">Analytics</p>
+            
+            <a href="index.html" class="flex items-center justify-between p-3 rounded-xl bg-indigo-600/10 text-indigo-400 border border-indigo-600/20 group">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    <span class="font-semibold text-sm">Dashboard</span>
+                </div>
+                <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+            </a>
+
+            <a href="reports.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <i data-lucide="pie-chart" class="w-5 h-5 text-slate-500 group-hover:text-indigo-400 transition-colors"></i>
+                <span class="text-sm font-medium">Monthly Reports</span>
+            </a>
+
+            <div class="pt-4 pb-2">
+                <p class="text-[11px] font-bold text-slate-600 uppercase px-3 tracking-[0.15em]">Inventory</p>
+            </div>
+
+
+            <a href="products.html" class="flex items-center justify-between p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <div class="flex items-center gap-3">
+                    <i data-lucide="box" class="w-5 h-5 text-slate-500 group-hover:text-emerald-400 transition-colors"></i>
+                    <span class="text-sm font-medium">Products</span>
+                </div>
+                
+            </a>
+
+            <a href="catterogies.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                <span class="text-sm font-medium">Cattegories</span>
+            </a>
+
+            <div class="pt-4 pb-2">
+                <p class="text-[11px] font-bold text-slate-600 uppercase px-3 tracking-[0.15em]">Logistics</p>
+            </div>
+
+            <a href="purchases.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-slate-500 group-hover:text-blue-400 transition-colors"></i>
+                <span class="text-sm font-medium">Purchases</span>
+            </a>
+
+            <a href="suppliers.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <i data-lucide="truck" class="w-5 h-5 text-slate-500 group-hover:text-amber-400 transition-colors"></i>
+                <span class="text-sm font-medium">Suppliers</span>
+            </a>
+
+            <div class="pt-4 pb-2">
+                <p class="text-[11px] font-bold text-slate-600 uppercase px-3 tracking-[0.15em]">Terminal</p>
+            </div>
+
+            <a href="sales.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <i data-lucide="shopping-cart" class="w-5 h-5 text-slate-500 group-hover:text-indigo-400 transition-colors"></i>
+                <span class="text-sm font-medium">Sales (POS)</span>
+            </a>
+
+            <a href="customers.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <i data-lucide="shopping-cart" class="w-5 h-5 text-slate-500 group-hover:text-indigo-400 transition-colors"></i>
+                <span class="text-sm font-medium">Customers</span>
+            </a>
+
+            <div class="pt-4 pb-2">
+                <p class="text-[11px] font-bold text-slate-600 uppercase px-3 tracking-[0.15em]">Treasury</p>
+            </div>
+
+            <a href="expenses.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/50 hover:text-slate-200 transition-all group">
+                <i data-lucide="wallet" class="w-5 h-5 text-slate-500 group-hover:text-rose-400 transition-colors"></i>
+                <span class="text-sm font-medium">Expenses</span>
+            </a>
+
+            
+        </nav>
+
+        <div class="p-4 border-t border-slate-800/50 bg-[#0B1222]">
+            <div class="flex items-center gap-3 p-2 rounded-2xl hover:bg-slate-800/50 transition-colors cursor-pointer group">
+                <div class="relative shrink-0">
+                    <img src="https://ui-avatars.com/api/?name=Waqas+Bilal&background=6366f1&color=fff" class="w-10 h-10 rounded-xl object-cover" alt="user">
+                    <div class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-[#0B1222] rounded-full"></div>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-bold text-white truncate">Waqas Bilal</p>
+                    <p class="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Owner Account</p>
+                </div>
+                <i data-lucide="more-vertical" class="w-4 h-4 text-slate-600 group-hover:text-slate-400"></i>
+            </div>
+        </div>
+    </aside>
+
+
+    <div class="flex-1 flex flex-col overflow-hidden">
+        
+        <header class="h-20 bg-white border-b border-slate-200 px-8 flex items-center justify-between shrink-0">
+            <div>
+                <h1 class="text-xl font-black text-slate-800 uppercase">Purchase Directory</h1>
+                <p class="text-[10px] font-bold text-slate-400 tracking-[0.2em]">Waqas Bilal Enterprise</p>
+            </div>
+            
+            <button onclick="toggleDrawer()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-2xl font-black text-sm shadow-lg shadow-indigo-200 flex items-center gap-2 transition-all active:scale-95">
+                <i data-lucide="plus-circle" class="w-5 h-5"></i> NEW PURCHASE
+            </button>
+        </header>
+
+        <main class="p-8 overflow-y-auto flex-1 custom-scrollbar">
+            <div class="bg-white rounded-[2.5rem] border border-slate-200 shadow-sm overflow-hidden">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-100 text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                            <th class="px-8 py-5">PID</th>
+                            <th class="px-6 py-5">Date</th>
+                            <th class="px-6 py-5">Product / Category</th>
+                            <th class="px-6 py-5">Qty (Box)</th>
+                            <th class="px-6 py-5">Bill Amount</th>
+                            <th class="px-6 py-5">Retail Price</th>
+                            <th class="px-6 py-5 text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-50">
+                        <tr class="hover:bg-slate-50/80 transition-colors cursor-pointer">
+                            <td class="px-8 py-5 text-xs font-bold text-indigo-600">#PUR-8821</td>
+                            <td class="px-6 py-5 text-xs font-bold text-slate-500">22 Feb 2026</td>
+                            <td class="px-6 py-5">
+                                <p class="text-sm font-black text-slate-800">Fresh Milk 1L</p>
+                                <p class="text-[10px] font-bold text-slate-400 uppercase">Dairy</p>
+                            </td>
+                            <td class="px-6 py-5 text-xs font-bold text-slate-700">25 Boxes <span class="text-slate-400 text-[10px]">(12/Box)</span></td>
+                            <td class="px-6 py-5 text-sm font-black text-slate-900">Rs 45,000</td>
+                            <td class="px-6 py-5 text-xs font-black text-emerald-600">Rs 180.00</td>
+                            <td class="px-6 py-5 text-center">
+                                <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase">Paid</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <div id="overlay" onclick="toggleDrawer()" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300"></div>
+
+    <aside id="purchaseDrawer" class="fixed top-0 right-0 h-full w-[420px] bg-white z-50 shadow-2xl border-l border-slate-200 drawer-hidden flex flex-col overflow-hidden">
+    
+    <div class="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 backdrop-blur-md">
+        <div>
+            <h2 class="text-base font-black text-slate-800 flex items-center gap-2">
+                <i data-lucide="plus-square" class="w-4 h-4 text-indigo-600"></i> New Entry
+            </h2>
+        </div>
+        <button onclick="toggleDrawer()" class="p-1.5 hover:bg-rose-50 hover:text-rose-500 rounded-lg transition-colors text-slate-400">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+    </div>
+
+    <div class="flex-1 p-4 space-y-3 overflow-y-auto custom-scrollbar">
+        
+        <div class="bg-slate-50/50 p-4 rounded-2xl border border-slate-100">
+            <p class="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-1">
+                <i data-lucide="truck" class="w-3 h-3"></i> Logistics & Source
+            </p>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="col-span-1">
+                    <label class="text-[9px] font-bold text-slate-500 ml-1">Date</label>
+                    <input type="date" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-bold outline-none focus:ring-1 focus:ring-indigo-500">
+                </div>
+                <div class="col-span-1">
+                    <label class="text-[9px] font-bold text-slate-500 ml-1">Supplier ID</label>
+                    <select class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-bold outline-none">
+                        <option>S-001 (Metro)</option>
+                        <option>S-042 (Dairy)</option>
+                    </select>
+                </div>
+                <div class="col-span-2">
+                    <label class="text-[9px] font-bold text-slate-500 ml-1">Product Name</label>
+                    <input type="text" placeholder="Lays Masala 40g" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-bold outline-none">
+                </div>
+                <div class="col-span-1">
+                    <label class="text-[9px] font-bold text-slate-500 ml-1">Category</label>
+                    <input type="text" placeholder="Snacks" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-bold outline-none">
+                </div>
+                <div class="col-span-1">
+                    <label class="text-[9px] font-bold text-slate-500 ml-1">Storage Loc.</label>
+                    <input type="text" placeholder="Shelf A1" class="w-full bg-white border border-slate-200 rounded-lg p-2 text-xs font-bold outline-none">
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100/50">
+            <p class="text-[9px] font-black text-indigo-600 uppercase tracking-widest mb-3 flex items-center gap-1">
+                <i data-lucide="box" class="w-3 h-3"></i> Stock & Purchase Price
+            </p>
+            <div class="grid grid-cols-3 gap-3">
+                <div class="col-span-1">
+                    <label class="text-[9px] font-bold text-slate-500">Qty (Box)</label>
+                    <input type="number" value="1" class="w-full bg-white border border-indigo-100 rounded-lg p-2 text-xs font-black text-indigo-600 text-center">
+                </div>
+                <div class="col-span-1">
+                    <label class="text-[9px] font-bold text-slate-500">Unit/Box</label>
+                    <input type="number" value="12" class="w-full bg-white border border-indigo-100 rounded-lg p-2 text-xs font-black text-indigo-600 text-center">
+                </div>
+                <div class="col-span-1">
+                    <label class="text-[9px] font-bold text-slate-500">Expiry</label>
+                    <input type="date" class="w-full bg-white border border-indigo-100 rounded-lg p-2 text-[10px] font-bold outline-none">
+                </div>
+                <div class="col-span-3">
+                    <label class="text-[9px] font-bold text-slate-500 ml-1">Per Box Purchase Price (Rs)</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2 text-xs font-bold text-slate-400">Rs</span>
+                        <input type="number" placeholder="0.00" class="w-full bg-white border-2 border-indigo-100 rounded-xl py-2 pl-9 pr-4 text-base font-black text-slate-800 outline-none">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-emerald-50/30 p-4 rounded-2xl border border-emerald-100/50">
+            <p class="text-[9px] font-black text-emerald-600 uppercase tracking-widest mb-3 flex items-center gap-1">
+                <i data-lucide="trending-up" class="w-3 h-3"></i> Sale Strategy
+            </p>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="text-[9px] font-bold text-emerald-600 ml-1">Retail (Item)</label>
+                    <input type="number" placeholder="0.00" class="w-full bg-white border border-emerald-100 rounded-lg p-2 text-xs font-black text-emerald-700 outline-none">
+                </div>
+                <div>
+                    <label class="text-[9px] font-bold text-amber-600 ml-1">W-Sale (Item)</label>
+                    <input type="number" placeholder="0.00" class="w-full bg-white border border-amber-100 rounded-lg p-2 text-xs font-black text-amber-700 outline-none">
+                </div>
+            </div>
+        </div>
+
+        <div class="px-1">
+            <label class="text-[9px] font-black text-slate-400 uppercase ml-1">Quick Remarks</label>
+            <textarea class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2 text-xs outline-none" rows="1" placeholder="Note..."></textarea>
+        </div>
+    </div>
+
+    <div class="p-4 border-t border-slate-100 bg-white">
+        <div class="flex justify-between items-end mb-4 px-1">
+            <div>
+                <p class="text-[8px] font-black text-slate-400 uppercase tracking-widest">Grand Total Bill</p>
+                <p class="text-xl font-black text-slate-900 leading-none">Rs 0.00</p>
+            </div>
+            <div class="text-right">
+                <p class="text-[8px] font-black text-indigo-400 uppercase tracking-widest">Per Item Cost</p>
+                <p class="text-sm font-bold text-indigo-600 leading-none">Rs 0.00</p>
+            </div>
+        </div>
+        <button onclick="toggleDrawer()" class="w-full bg-slate-900 hover:bg-black text-white py-3.5 rounded-xl font-black text-sm shadow-xl transition-all flex items-center justify-center gap-2 active:scale-95">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> SAVE RECORD
+        </button>
+    </div>
+</aside>
+
+</div>
+
+<script>
+    lucide.createIcons();
+
+    function toggleDrawer() {
+        const drawer = document.getElementById('purchaseDrawer');
+        const overlay = document.getElementById('overlay');
+        
+        if (drawer.classList.contains('drawer-hidden')) {
+            drawer.classList.remove('drawer-hidden');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        } else {
+            drawer.classList.add('drawer-hidden');
+            overlay.classList.remove('opacity-100');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+        }
+    }
+</script>
+</body>
+</html>
