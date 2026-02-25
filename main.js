@@ -5,10 +5,6 @@
 // 1. Initialize Global Components on Page Load
 document.addEventListener('DOMContentLoaded', () => {
     loadSidebar();
-    if (document.getElementById('live-clock')) {
-        updateClock();
-        setInterval(updateClock, 1000);
-    }
 });
 
 // 2. Sidebar Injection Logic
@@ -27,6 +23,22 @@ function loadSidebar() {
         .catch(err => console.error('Error loading sidebar:', err));
 }
 
+// 3.--- PRODUCT MODAL LOGIC ---
+function toggleProductModal() {
+    const modal = document.getElementById('productModal');
+    if (modal) {
+        modal.classList.toggle('modal-active');
+        
+        // Reset scrolling on the main page
+        if (modal.classList.contains('modal-active')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }
+}
+
+
 // 3. Highlight Active Sidebar Link
 function setActiveNavLink() {
     const currentPath = window.location.pathname.split("/").pop();
@@ -37,6 +49,101 @@ function setActiveNavLink() {
         }
     });
 }
+
+// 4.// category model 
+function toggleGenericModal(id) {
+    const modal = document.getElementById(id);
+    if (modal) {
+        modal.classList.toggle('hidden');
+        // Prevent body from scrolling when modal is open
+        if (!modal.classList.contains('hidden')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }
+}
+
+// 5. Purchase Drawer & Overlay Logic
+function toggleDrawer() {
+    const drawer = document.getElementById('purchaseDrawer');
+    const overlay = document.getElementById('overlay');
+    
+    if (!drawer || !overlay) return;
+
+    if (drawer.classList.contains('drawer-hidden')) {
+        drawer.classList.remove('drawer-hidden');
+        overlay.classList.remove('hidden');
+        setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        document.body.style.overflow = 'hidden'; // Prevent scroll
+    } else {
+        drawer.classList.add('drawer-hidden');
+        overlay.classList.remove('opacity-100');
+        setTimeout(() => overlay.classList.add('hidden'), 400);
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// --- 6. SUPPLIER MODAL (Toggle Logic) ---
+function toggleModal() {
+    // This specifically targets the ID in your suppliers.html
+    const modal = document.getElementById('supplierModal');
+    if (modal) {
+        modal.classList.toggle('modal-active');
+    }
+}
+
+// --- 7. Sale Model
+function toggleSaleDrawer() {
+    const drawer = document.getElementById('saleDrawer');
+    const overlay = document.getElementById('saleOverlay');
+    
+    if (!drawer) return;
+
+    if (drawer.classList.contains('drawer-hidden')) {
+        // OPEN
+        drawer.classList.remove('drawer-hidden');
+        overlay.classList.remove('hidden');
+        setTimeout(() => overlay.classList.add('opacity-100'), 10);
+        document.body.style.overflow = 'hidden';
+    } else {
+        // CLOSE
+        drawer.classList.add('drawer-hidden');
+        overlay.classList.remove('opacity-100');
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 300);
+        document.body.style.overflow = 'auto';
+    }
+}
+// --- 8. Customer Modal
+// Specifically for Customer Modal (matches your previous custom code)
+function openCustomerModal() {
+    const modal = document.getElementById('customerModal');
+    if (modal) {
+        modal.classList.remove('hidden-modal');
+        document.body.style.overflow = 'hidden';
+    }
+}
+function closeCustomerModal() {
+    const modal = document.getElementById('customerModal');
+    if (modal) {
+        modal.classList.add('hidden-modal');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+
+// 9. Global Event Listeners (Close modals on outside click)
+window.onclick = function(event) {
+    const customerModal = document.getElementById('customerModal');
+    const supplierModal = document.getElementById('supplierModal');
+    if (event.target == customerModal) closeCustomerModal();
+    if (event.target == supplierModal) toggleModal('supplierModal');
+}
+
+
+
 
 // 4. Modal & Drawer Toggles
 function toggleModal(modalId) {
@@ -52,38 +159,4 @@ function toggleModal(modalId) {
             modal.classList.toggle('hidden');
         }
     }
-}
-
-// Specifically for Customer Modal (matches your previous custom code)
-function openCustomerModal() {
-    const modal = document.getElementById('customerModal');
-    if (modal) {
-        modal.classList.remove('hidden-modal');
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeCustomerModal() {
-    const modal = document.getElementById('customerModal');
-    if (modal) {
-        modal.classList.add('hidden-modal');
-        document.body.style.overflow = 'auto';
-    }
-}
-
-// 5. Shared Utilities (Clock & Formatting)
-function updateClock() {
-    const clockElement = document.getElementById('live-clock');
-    if (!clockElement) return;
-    const now = new Date();
-    const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' };
-    clockElement.innerText = now.toLocaleString('en-GB', options).replace(',', ' |');
-}
-
-// 6. Global Event Listeners (Close modals on outside click)
-window.onclick = function(event) {
-    const customerModal = document.getElementById('customerModal');
-    const supplierModal = document.getElementById('supplierModal');
-    if (event.target == customerModal) closeCustomerModal();
-    if (event.target == supplierModal) toggleModal('supplierModal');
 }

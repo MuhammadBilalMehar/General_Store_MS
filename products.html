@@ -23,7 +23,7 @@
         <header class="bg-white border-b border-slate-200 h-16 flex items-center justify-between px-8 shrink-0">
             <h1 class="text-lg font-bold text-slate-800">Product Management</h1>
             <div class="flex items-center gap-4">
-                <button onclick="toggleModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition-all font-medium">
+                <button onclick="toggleProductModal()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl flex items-center gap-2 transition-all font-medium">
                     <i data-lucide="plus" class="w-4 h-4"></i> Add Product
                 </button>
             </div>
@@ -104,7 +104,7 @@
                 </td>
                 <td class="px-6 py-4 text-right">
                     <div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onclick="toggleModal()" class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button onclick="toggleProductModal()" class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
                         <button class="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                 </td>
@@ -147,7 +147,7 @@
                 </td>
                 <td class="px-6 py-4 text-right">
                     <div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button onclick="toggleModal()" class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
+                        <button onclick="toggleProductModal()" class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"><i data-lucide="edit-3" class="w-4 h-4"></i></button>
                         <button class="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-xl transition-all"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
                     </div>
                 </td>
@@ -167,7 +167,7 @@
                 <h3 class="text-lg font-black text-slate-800 tracking-tight">Product Master Entry</h3>
                 <p class="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">Inventory & Asset Management</p>
             </div>
-            <button onclick="toggleModal()" class="p-2 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-xl transition-all">
+            <button onclick="toggleProductModal()" class="p-2 hover:bg-rose-50 text-slate-400 hover:text-rose-500 rounded-xl transition-all">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
         </div>
@@ -267,7 +267,7 @@
                 </div>
 
                 <div class="col-span-3 flex justify-end gap-3 pt-2">
-                    <button type="button" onclick="toggleModal()" class="px-5 py-2 text-slate-400 font-bold hover:text-rose-500 text-[10px] uppercase tracking-widest transition-all">Discard</button>
+                    <button type="button" onclick="toggleProductModal()" class="px-5 py-2 text-slate-400 font-bold hover:text-rose-500 text-[10px] uppercase tracking-widest transition-all">Discard</button>
                     <button type="submit" class="px-8 py-2.5 bg-indigo-600 text-white rounded-xl font-black text-xs hover:bg-black transition-all shadow-xl shadow-indigo-100 flex items-center gap-2">
                         <i data-lucide="check-circle-2" class="w-4 h-4"></i> SAVE PRODUCT
                     </button>
@@ -277,7 +277,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
     // Preview Image logic
     document.getElementById('product_image').onchange = function (evt) {
         const [file] = this.files;
@@ -287,7 +287,7 @@
             preview.classList.remove('hidden');
         }
     }
-</script>
+</script> -->
 
 <!-- <script>
 
